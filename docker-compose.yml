@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  leadflowx-scheduler:
+    build: .
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/leadflowx
+      - KAFKA_BROKER=kafka:9092
+    depends_on:
+      - postgres
+      - kafka
+    networks:
+      - leadflowx-network
+    ports:
+      - "8085:8080"
+    restart: unless-stopped
+
+networks:
+  leadflowx-network:
+    external: true
