@@ -1,0 +1,33 @@
+repositories:
+  - name: harbor
+    url: https://{{ .Values.harborRegistry }}/chartrepo/{{ .Values.harborProject }}
+
+releases:
+  - name: leadflowx-scheduler
+    namespace: {{ .Values.namespace | default "leadflowx" }}
+    chart: ./helm/scheduler
+    version: {{ .Values.version | default "0.1.0" }}
+    values:
+      - ./helm/scheduler/values.yaml
+      - values:
+          image:
+            repository: {{ .Values.harborRegistry }}/{{ .Values.harborProject }}/leadflowx-scheduler
+            tag: {{ .Values.imageTag | default "latest" }}
+          
+          ingress:
+            enabled: true
+            annotations:
+              kubernetes.io/ingress.class: {{ .Values.ingressClass | default "nginx" }}
+            hosts:
+              - host: {{ .Values.schedulerHost | default "scheduler.leadflowx.local" }}
+                paths:
+                  - path: /
+                    pathType: Prefix
+          
+          resources:
+            limits:
+              cpu: {{ .Values.resources.limits.cpu | default "500m" }}
+              memory: {{ .Values.resources.limits.memory | default "512Mi" }}
+            requests:
+              cpu: {{ .Values.resources.requests.cpu | default "100m" }}
+              memory: {{ .Values.resources.requests.memory | default "128Mi" }}

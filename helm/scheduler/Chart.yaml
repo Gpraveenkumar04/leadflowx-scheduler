@@ -1,0 +1,10 @@
+apiVersion: v2
+name: leadflowx-scheduler
+description: A Helm chart for LeadFlowX Scheduler service
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+
+maintainers:
+  - name: LeadFlowX Team
+    email: team@leadflowx.example.com
