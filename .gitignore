@@ -30,3 +30,42 @@ go.work.sum
 # Editor/IDE
 # .idea/
 # .vscode/
+
+# Permanently deleted files - DO NOT RECREATE
+CLEANUP_SUMMARY.md
+PRODUCTION_READY_STRUCTURE.md
+cleanup-codebase.ps1
+run-cleanup.bat
+googlemaps-scraper/API_KEY_SECURITY_CHANGES.md
+googlemaps-scraper/API_KEY_SETUP.md
+googlemaps-scraper/production/IMPLEMENTATION_GUIDE.md
+googlemaps-scraper/production/README.md
+googlemaps-scraper/production/cleanup-duplicates.ps1
+googlemaps-scraper/production/create-scheduled-task.ps1
+googlemaps-scraper/production/deploy-admin-ui.ps1
+googlemaps-scraper/production/leadflowx-scraper.ps1
+googlemaps-scraper/production/manage-scraper.ps1
+googlemaps-scraper/production/monitor-health.ps1
+googlemaps-scraper/tools/check-api-key-security.ps1
+INSTALL_DEV.md
+INTEGRATED_SCRAPERS.md
+QUICKSTART_INTEGRATED.md
+UNIFIED_SCRAPERS_README.md
+docker-compose-integrated.yml
+docker-compose.googlemaps.yml
+docker-compose.infra.yml
+fix-googlemaps-scraper.ps1
+googlemaps-scraper-integration.yml
+googlemaps-scraper/production/enhanced-cleanup.ps1
+googlemaps-scraper/test_kafka_integration.ps1
+googlemaps-scraper/test_kafka_integration.sh
+manage-googlemaps-integrated.ps1
+manage-googlemaps-scraper.ps1
+manage-scraper-template.ps1
+manage-yelp-scraper.ps1
+run-googlemaps-scraper.ps1
+run-scrapers-direct.ps1
+run-scrapers.ps1
+run-scrapers.sh
+setup-environment.py
+start-integrated-environment.ps1
