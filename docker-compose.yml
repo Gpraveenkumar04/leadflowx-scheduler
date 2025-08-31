@@ -1,16 +1,30 @@
+# LeadFlowX Scheduler
+# Updated to use centralized configuration and templates
+
 version: '3.8'
 
 services:
   leadflowx-scheduler:
     build: .
+    <<: *default-restart
+    <<: *default-logging
+    networks: *default-networks
     environment:
-      - DATABASE_URL=postgresql://postgres:LeadFlowX_SecurePassword_2025!@postgres:5432/leadflowx
-      - KAFKA_BROKER=kafka:9092
-    networks:
-      - leadflowx-network
+      - NODE_ENV=${NODE_ENV:-production}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - DB_URL=${DB_URL}
+      - KAFKA_BROKER=${KAFKA_BROKER:-kafka:29092}
+      - SCHEDULE_INTERVAL=${SCHEDULE_INTERVAL:-30}
     ports:
-      - "8085:8080"
-    restart: unless-stopped
+      - "${SCHEDULER_PORT:-8085}:${SCHEDULER_INTERNAL_PORT:-8080}"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:${SCHEDULER_INTERNAL_PORT:-8080}/health"]
+      <<: *healthcheck-base
 
 networks:
   leadflowx-network:
